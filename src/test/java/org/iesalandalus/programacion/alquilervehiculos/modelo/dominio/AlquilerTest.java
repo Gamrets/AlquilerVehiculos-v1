@@ -165,7 +165,7 @@ public class AlquilerTest {
 		alquilerSemanaPasada = new Alquiler(cliente, turismo, semanaPasada);
 		assertDoesNotThrow(() -> alquilerSemanaPasada.devolver(ayer));
 		assertEquals(174, alquilerSemanaPasada.getPrecio());
-	}
+	} 
 
 	@Test
 	void equalsYHasCodeConsistentes() {

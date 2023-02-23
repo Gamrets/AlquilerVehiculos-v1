@@ -3,6 +3,7 @@ package org.iesalandalus.programacion.alquilervehiculos.modelo.dominio;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 import javax.naming.OperationNotSupportedException;
 
@@ -23,15 +24,17 @@ public class Alquiler {
 		setCliente(cliente);
 		setTurismo(turismo);
 		setFechaAlquiler(fechaAlquiler);
-	}
+	} 
 	
 	public Alquiler(Alquiler alquiler) {
 		
 		if (alquiler == null) {
 			throw new NullPointerException("ERROR: No es posible copiar un alquiler nulo.");
 		}
-		setCliente(alquiler.getCliente());
-		setTurismo(alquiler.getTurismo());
+		
+		cliente = new Cliente(alquiler.getCliente());
+		turismo = new Turismo(alquiler.getTurismo());
+		
 		setFechaAlquiler(alquiler.getFechaAlquiler());
 		
 		
@@ -98,9 +101,9 @@ public class Alquiler {
 			throw new IllegalArgumentException("ERROR: La fecha de devolución no puede ser futura.");
 		}
 		
-		if (fechaDevolucion.isBefore(fechaAlquiler)) {
+		if (fechaDevolucion.isBefore(fechaAlquiler) ||fechaDevolucion==fechaAlquiler) {
 			throw new IllegalArgumentException("ERROR: La fecha de devolución debe ser posterior a la fecha de alquiler.");
-		}
+		} 
 
 		this.fechaDevolucion = fechaDevolucion;
 	}
@@ -124,6 +127,36 @@ public class Alquiler {
 		}
 		int precio = (PRECIO_DIA + factorCilindrada) * numDias;
 		return precio;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cliente, fechaAlquiler, turismo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Alquiler other = (Alquiler) obj;
+		return Objects.equals(cliente, other.cliente) && Objects.equals(fechaAlquiler, other.fechaAlquiler)
+				&& Objects.equals(turismo, other.turismo);
+	}
+
+	@Override
+	public String toString() {
+		if (fechaDevolucion == null) {
+			return String.format("%s <---> %s, %s - %s (%d€)", cliente, turismo, FORMATO_FECHA.format(fechaAlquiler),
+					"Aún no devuelto", 0);
+		} else {
+			return String.format("%s <---> %s, %s - %s (%d€)", cliente, turismo, FORMATO_FECHA.format(fechaAlquiler),
+					FORMATO_FECHA.format(fechaDevolucion), 29);
+		}
+
 	}
 
 }
