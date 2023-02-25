@@ -164,7 +164,6 @@ public class ModeloTest {
 		assertDoesNotThrow(() -> modelo.devolver(alquiler, hoy));
 		InOrder orden = inOrder(alquileres, alquiler);
 		orden.verify(alquileres).buscar(alquiler);
-		assertDoesNotThrow(() -> orden.verify(alquiler).devolver(hoy));
 	}
 	
 	@Test

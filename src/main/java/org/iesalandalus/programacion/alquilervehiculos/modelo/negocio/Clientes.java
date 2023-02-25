@@ -16,9 +16,9 @@ public class Clientes {
 		coleccionClientes = new ArrayList<>();
 	}
 
-	public ArrayList<Cliente> get() {
+	public List<Cliente> get() {
 
-		ArrayList<Cliente> clientesCopia = new ArrayList<>(coleccionClientes);
+		List<Cliente> clientesCopia = new ArrayList<>(coleccionClientes);
 		return clientesCopia;
 	}
 

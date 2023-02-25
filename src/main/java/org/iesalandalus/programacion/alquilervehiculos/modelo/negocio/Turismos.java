@@ -17,9 +17,9 @@ public class Turismos {
 		coleccionTurismos = new ArrayList<>();
 	}
 
-	public ArrayList<Turismo> get() {
+	public List<Turismo> get() {
 
-		ArrayList<Turismo> turismosCopia = new ArrayList<>(coleccionTurismos);
+		List<Turismo> turismosCopia = new ArrayList<>(coleccionTurismos);
 		return turismosCopia;
 	}
 

@@ -30,7 +30,7 @@ public class Modelo {
 	}
 
 	public void terminar() {
-		System.out.println("El modelo ha terminado");
+		System.out.println("El modelo finalizado");
 	}
 
 	public void insertar(Cliente cliente) throws OperationNotSupportedException {
@@ -84,11 +84,10 @@ public class Modelo {
 
 	public void devolver(Alquiler alquiler, LocalDate fechaDevolucion) throws OperationNotSupportedException {
 
-		if (alquiler.getFechaAlquiler() == null) {
-			throw new NullPointerException("ERROR: No existe el alquiler a devolver.");
-		} else {
-			alquiler.devolver(fechaDevolucion);
+		if (alquileres.buscar(alquiler) == null) {
+			throw new OperationNotSupportedException("ERROR: No existe el alquiler a devolver.");
 		}
+		alquileres.devolver(alquiler, fechaDevolucion);
 	}
 
 	public void borrar(Cliente cliente) throws OperationNotSupportedException {
@@ -110,37 +109,76 @@ public class Modelo {
 		for (Alquiler alquilerTurismo : alquileres.get(turismo)) {
 			alquileres.borrar(alquilerTurismo);
 		}
-		
+
 		turismos.borrar(turismo);
 	}
 
 	public List<Cliente> getClientes() {
-		
-		
-		return null;
+
+		List<Cliente> listaClientes = new ArrayList<>();
+		Iterator<Cliente> iterator = clientes.get().iterator();
+		while(iterator.hasNext()) {
+		    Cliente cliente = iterator.next();
+		    if (cliente != null) {
+		        listaClientes.add(new Cliente(cliente));
+		    }
+		}
+		return listaClientes;
 	}
+	
 
 	public List<Alquiler> getAlquileres() {
-		
-	
-		return null;
+
+		List<Alquiler> listaAlquileres = new ArrayList<>();
+		Iterator<Alquiler> iterador = alquileres.get().iterator();
+		while (iterador.hasNext()) {
+		    Alquiler alquiler = iterador.next();
+		    if (alquiler != null) {
+		        listaAlquileres.add(new Alquiler(alquiler));
+		    }
+		}
+		return listaAlquileres;
 	}
 
 	public List<Turismo> getTurismos() {
-		
-		
-		return null;
+
+		List<Turismo> listaTurismos = new ArrayList<>();
+		Iterator<Turismo> iterador = turismos.get().iterator();
+		while (iterador.hasNext()) {
+		    Turismo turismo = iterador.next();
+		    if (turismo != null) {
+		        listaTurismos.add(new Turismo(turismo));
+		    }
+		}
+		return listaTurismos;
+
 	}
 
 	public List<Alquiler> getAlquileres(Cliente cliente) {
-	
-		return null;
+
+		List<Alquiler> listaAlquileres = new ArrayList<>();
+		Iterator<Alquiler> iterador = alquileres.get(cliente).iterator();
+		while (iterador.hasNext()) {
+		    Alquiler alquiler = iterador.next();
+		    if (alquiler != null) {
+		        listaAlquileres.add(new Alquiler(alquiler));
+		    }
+		}
+		return listaAlquileres;
 
 	}
 
 	public List<Alquiler> getAlquileres(Turismo turismo) {
-		return null;
 
+		List<Alquiler> listaAlquileres = new ArrayList<>();
+		Iterator<Alquiler> iterador = alquileres.get(turismo).iterator();
+		while (iterador.hasNext()) {
+		    Alquiler alquiler = iterador.next();
+		    if (alquiler != null) {
+		        listaAlquileres.add(new Alquiler(alquiler));
+		    }
+		}
+		return listaAlquileres;
 	}
 
 }

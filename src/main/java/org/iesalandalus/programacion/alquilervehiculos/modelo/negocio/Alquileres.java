@@ -19,9 +19,9 @@ public class Alquileres {
 		coleccionAlquileres = new ArrayList<>();
 	}
 
-	public ArrayList<Alquiler> get() {
+	public List<Alquiler> get() {
 
-		ArrayList<Alquiler> alquileresCopia = new ArrayList<>(coleccionAlquileres);
+		List<Alquiler> alquileresCopia = new ArrayList<>(coleccionAlquileres);
 		return alquileresCopia;
 	}
 
