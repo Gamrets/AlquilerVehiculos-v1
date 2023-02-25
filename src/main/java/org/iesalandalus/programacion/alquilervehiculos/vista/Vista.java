@@ -37,7 +37,6 @@ public class Vista {
 
 		} while (opcion != Opcion.SALIR);
 
-		terminar();
 	}
 
 	private void ejecutar(Opcion opcion) {
