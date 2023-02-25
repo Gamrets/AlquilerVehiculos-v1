@@ -33,4 +33,9 @@ public enum Opcion {
 
 		return (ordinal >= 0 && ordinal <= values().length - 1);
 	}
+
+	public String toString() {
+
+		return String.format("%d.-%s", ordinal(), cadenaAmostrar);
+	}
 }

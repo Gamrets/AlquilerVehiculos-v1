@@ -102,6 +102,7 @@ public class Vista {
 
 				default:
 					opcion = Opcion.SALIR;
+					terminar();
 			}	
 
 	}
