@@ -8,7 +8,7 @@ public class Turismo extends Vehiculo {
 	private int cilindrada;
 
 	public Turismo(String marca, String modelo, int cilindrada, String matricula) {
-		super(marca, modelo, cilindrada, matricula);
+		super(marca, modelo, matricula);
 
 		setCilindrada(cilindrada);
 	}
@@ -56,7 +56,8 @@ public class Turismo extends Vehiculo {
 
 	@Override
 	public String toString() {
-		return super.toString() + ", cilindrada=" + getCilindrada();
+		return (String.format("%s %s (%sCV) - %s", super.getMarca(), getCilindrada(), super.getModelo(),
+				super.getMatricula(), "disponible"));
 	}
 
 }
