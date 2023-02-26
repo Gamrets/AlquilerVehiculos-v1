@@ -32,6 +32,28 @@ public abstract class Vehiculo {
 	}
 
 	public abstract int getFactorPrecio();
+	
+    
+	public Vehiculo copiar(Vehiculo vehiculo) {
+		
+		
+		   //comprobamos que el veiculo recibido es de tipo instancia Turismo
+		if (vehiculo instanceof Turismo) {
+			
+			return new Turismo((Turismo) vehiculo);
+			
+		} else if (vehiculo instanceof Autobus) {
+			
+			return new Autobus((Autobus) vehiculo);
+			
+		} else if (vehiculo instanceof Furgoneta) {
+			
+			return new Furgoneta((Furgoneta)vehiculo);
+		} else {
+			throw new IllegalArgumentException("ERROR: Tipo de vehículo desconocido.");
+		}
+	}
+	
 
 	public static Vehiculo getVehiculoConMatricula(String matriculaValida) {
 
@@ -39,9 +61,9 @@ public abstract class Vehiculo {
 			throw new NullPointerException("ERROR: La matrícula no puede ser nula.");
 		}
 
-		// Vehiculo turismo = new Vehiculo("Seat","León",matriculaValida);
+		 Autobus autobus = new Autobus("Mercedes","Cian",32,matriculaValida);
 
-		return null;
+		return autobus;
 	}
 
 	public String getMarca() {

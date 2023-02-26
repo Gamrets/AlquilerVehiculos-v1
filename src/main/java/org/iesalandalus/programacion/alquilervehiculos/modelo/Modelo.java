@@ -12,13 +12,13 @@ import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Vehiculo;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.Alquileres;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.Clientes;
-import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.Turismos;
+import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.Vehiculos;
 
 public class Modelo {
 
 	private Alquileres alquileres;
 	private Clientes clientes;
-	private Turismos turismos;
+	private Vehiculos turismos;
 
 	public Modelo() {
 	}
@@ -26,7 +26,7 @@ public class Modelo {
 	public void comenzar() {
 		alquileres = new Alquileres();
 		clientes = new Clientes();
-		turismos = new Turismos();
+		turismos = new Vehiculos();
 	}
 
 	public void terminar() {
@@ -49,7 +49,7 @@ public class Modelo {
 			throw new OperationNotSupportedException("ERROR: No existe el cliente del alquiler.");
 		}
 
-		if (turismos.buscar(alquiler.getTurismo()) == null) {
+		if (turismos.buscar(alquiler.getVehiculo()) == null) {
 			throw new OperationNotSupportedException("ERROR: No existe el turismo del alquiler.");
 		}
 

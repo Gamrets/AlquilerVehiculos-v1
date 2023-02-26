@@ -61,7 +61,7 @@ public class Alquileres {
 			Alquiler alquiler = iterador.next();
 			
 			//se comprueba si turismo recibido es igual al turismo de alquiler 
-			if (alquiler.getTurismo().equals(turismo)) {
+			if (alquiler.getVehiculo().equals(turismo)) {
 				
 				//si es igual este alquiler se añade a la lista de alquileres con este turismo asosiado
 				listaAlquileres.add(alquiler);
@@ -82,7 +82,7 @@ public class Alquileres {
 			throw new NullPointerException("ERROR: No se puede insertar un alquiler nulo.");
 		}
 
-		comprobarAlquiler(alquiler.getCliente(), alquiler.getTurismo(), alquiler.getFechaAlquiler());
+		comprobarAlquiler(alquiler.getCliente(), alquiler.getVehiculo(), alquiler.getFechaAlquiler());
 		coleccionAlquileres.add(alquiler);
 
 	}
@@ -97,7 +97,7 @@ public class Alquileres {
 				if (alquiler.getCliente().equals(cliente)) {
 					throw new OperationNotSupportedException("ERROR: El cliente tiene otro alquiler sin devolver.");
 				}
-				if (alquiler.getTurismo().equals(turismo)) {
+				if (alquiler.getVehiculo().equals(turismo)) {
 					throw new OperationNotSupportedException("ERROR: El turismo está actualmente alquilado.");
 				}
 			} else {
@@ -105,7 +105,7 @@ public class Alquileres {
 						|| alquiler.getFechaDevolucion().isEqual(fechaAlquiler))) {
 					throw new OperationNotSupportedException("ERROR: El cliente tiene un alquiler posterior.");
 				}
-				if (alquiler.getTurismo().equals(turismo) && (alquiler.getFechaDevolucion().isAfter(fechaAlquiler)
+				if (alquiler.getVehiculo().equals(turismo) && (alquiler.getFechaDevolucion().isAfter(fechaAlquiler)
 						|| alquiler.getFechaDevolucion().isEqual(fechaAlquiler))) {
 					throw new OperationNotSupportedException("ERROR: El turismo tiene un alquiler posterior.");
 				}

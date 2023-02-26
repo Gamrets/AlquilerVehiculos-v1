@@ -28,7 +28,7 @@ public class TurismosTest {
 
 	private static Vehiculo turismo1;
 	private static Vehiculo turismo2;
-	private Turismos turismos;
+	private Vehiculos turismos;
 
 	@BeforeAll
 	public static void setup() {
@@ -40,7 +40,7 @@ public class TurismosTest {
 	
 	@BeforeEach
 	void init() {
-		turismos = new Turismos();
+		turismos = new Vehiculos();
 	}
 
 	@Test

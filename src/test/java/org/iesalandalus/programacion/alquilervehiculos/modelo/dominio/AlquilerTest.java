@@ -82,8 +82,8 @@ public class AlquilerTest {
 	void constructorClienteValidoTurismoValidoFechaAlquilerValidaCreaAlquilerCorrectamente() {
 		alquilerHoy = new Alquiler(cliente, turismo, hoy);
 		assertSame(cliente, alquilerHoy.getCliente());
-		assertEquals(turismo, alquilerHoy.getTurismo());
-		assertSame(turismo, alquilerHoy.getTurismo());
+		assertEquals(turismo, alquilerHoy.getVehiculo());
+		assertSame(turismo, alquilerHoy.getVehiculo());
 		assertEquals(hoy, alquilerHoy.getFechaAlquiler());
 		assertNull(alquilerHoy.getFechaDevolucion());
 		assertEquals(0, alquilerHoy.getPrecio());
@@ -117,7 +117,7 @@ public class AlquilerTest {
 		assertDoesNotThrow(() -> alquilerAyer.devolver(hoy));
 		Alquiler alquilerCopia = new Alquiler(alquilerAyer);
 		assertNotSame(cliente, alquilerCopia.getCliente());
-		assertNotSame(turismo, alquilerCopia.getTurismo());
+		assertNotSame(turismo, alquilerCopia.getVehiculo());
 		assertEquals(ayer, alquilerCopia.getFechaAlquiler());
 		assertEquals(hoy, alquilerCopia.getFechaDevolucion());
 		assertEquals(alquilerAyer.getPrecio(), alquilerCopia.getPrecio());
