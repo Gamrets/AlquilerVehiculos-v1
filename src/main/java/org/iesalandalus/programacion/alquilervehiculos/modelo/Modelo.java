@@ -1,8 +1,6 @@
 package org.iesalandalus.programacion.alquilervehiculos.modelo;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
@@ -12,19 +10,28 @@ import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Vehiculo;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.Alquileres;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.Clientes;
+import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.FuenteDatosMemoria;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IAlquileres;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IClientes;
+import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IFuenteDatos;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IVehiculos;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.Vehiculos;
 
-public class Modelo {
 
-	private IAlquileres alquileres;
-	private IClientes clientes;
-	private IVehiculos vehiculo;
 
-	public Modelo() {
-	}
+
+
+public abstract class Modelo {
+
+	 IAlquileres alquileres;
+	 IClientes clientes;
+	 IVehiculos vehiculo;
+	 IFuenteDatos fuenteDatos;
+
+	 public void setFuenteDatos(IFuenteDatos fuenteDatos) {
+		 
+		 fuenteDatos = new FuenteDatosMemoria();
+	 }
 
 	public void comenzar() {
 		alquileres = new Alquileres();
@@ -36,152 +43,20 @@ public class Modelo {
 		System.out.println("El modelo finalizado");
 	}
 
-	public void insertar(Cliente cliente) throws OperationNotSupportedException {
-
-		// Insertamos en clientes copia cliente recibido
-		clientes.insertar(new Cliente(cliente));
-	}
-
-	public void insertar(Alquiler alquiler) throws OperationNotSupportedException {
-
-		if (alquiler == null) {
-			throw new NullPointerException("ERROR: No se puede realizar un alquiler nulo.");
-		}
-
-		if (clientes.buscar(alquiler.getCliente()) == null) {
-			throw new OperationNotSupportedException("ERROR: No existe el cliente del alquiler.");
-		}
-
-		if (vehiculo.buscar(alquiler.getVehiculo()) == null) {
-			throw new OperationNotSupportedException("ERROR: No existe el turismo del alquiler.");
-		}
-
-		alquileres.insertar(new Alquiler(alquiler));
-	}
-
-	public void insertar(Vehiculo turismo) throws OperationNotSupportedException {
-
-		// Insertamos en turismos copia turismo recibido
-		vehiculo.insertar(turismo.copiar(turismo));
-	}
-
-	public Cliente buscar(Cliente cliente) {
-		return clientes.buscar(cliente);
-	}
-
-	public Alquiler buscar(Alquiler alquiler) {
-		return alquileres.buscar(alquiler);
-
-	}
-
-	public Vehiculo buscar(Vehiculo turismo) {
-		return vehiculo.buscar(turismo);
-
-	}
-
-	public void modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException {
-
-		clientes.modificar(cliente, nombre, telefono);
-
-	}
-
-	public void devolver(Alquiler alquiler, LocalDate fechaDevolucion) throws OperationNotSupportedException {
-
-		if (alquileres.buscar(alquiler) == null) {
-			throw new OperationNotSupportedException("ERROR: No existe el alquiler a devolver.");
-		}
-		alquileres.devolver(alquiler, fechaDevolucion);
-	}
-
-	public void borrar(Cliente cliente) throws OperationNotSupportedException {
-
-		for (Alquiler alquilerCliente : alquileres.get(cliente)) {
-			alquileres.borrar(alquilerCliente);
-		}
-		clientes.borrar(cliente);
-	}
-
-	public void borrar(Alquiler alquiler) throws OperationNotSupportedException {
-
-		alquileres.borrar(alquiler);
-
-	}
-
-	public void borrar(Vehiculo turismo) throws OperationNotSupportedException {
-
-		for (Alquiler alquilerTurismo : alquileres.get(turismo)) {
-			alquileres.borrar(alquilerTurismo);
-		}
-
-		vehiculo.borrar(turismo);
-	}
-
-	public List<Cliente> getClientes() {
-
-		List<Cliente> listaClientes = new ArrayList<>();
-		Iterator<Cliente> iterator = clientes.get().iterator();
-		while(iterator.hasNext()) {
-		    Cliente cliente = iterator.next();
-		    if (cliente != null) {
-		        listaClientes.add(new Cliente(cliente));
-		    }
-		}
-		return listaClientes;
-	}
-	
-
-	public List<Alquiler> getAlquileres() {
-
-		List<Alquiler> listaAlquileres = new ArrayList<>();
-		Iterator<Alquiler> iterador = alquileres.get().iterator();
-		while (iterador.hasNext()) {
-		    Alquiler alquiler = iterador.next();
-		    if (alquiler != null) {
-		        listaAlquileres.add(new Alquiler(alquiler));
-		    }
-		}
-		return listaAlquileres;
-	}
-
-	public List<Vehiculo> getTurismos() {
-
-		List<Vehiculo> listaTurismos = new ArrayList<>();
-		Iterator<Vehiculo> iterador = vehiculo.get().iterator();
-		while (iterador.hasNext()) {
-		    Vehiculo turismo = iterador.next();
-		    if (turismo != null) {
-		        listaTurismos.add(turismo.copiar(turismo));
-		    }
-		}
-		return listaTurismos;
-
-	}
-
-	public List<Alquiler> getAlquileres(Cliente cliente) {
-
-		List<Alquiler> listaAlquileres = new ArrayList<>();
-		Iterator<Alquiler> iterador = alquileres.get(cliente).iterator();
-		while (iterador.hasNext()) {
-		    Alquiler alquiler = iterador.next();
-		    if (alquiler != null) {
-		        listaAlquileres.add(new Alquiler(alquiler));
-		    }
-		}
-		return listaAlquileres;
-
-	}
-
-	public List<Alquiler> getAlquileres(Vehiculo turismo) {
-
-		List<Alquiler> listaAlquileres = new ArrayList<>();
-		Iterator<Alquiler> iterador = alquileres.get(turismo).iterator();
-		while (iterador.hasNext()) {
-		    Alquiler alquiler = iterador.next();
-		    if (alquiler != null) {
-		        listaAlquileres.add(new Alquiler(alquiler));
-		    }
-		}
-		return listaAlquileres;
-	}
-
+	public abstract void insertar(Cliente cliente) throws OperationNotSupportedException ;
+	public abstract void insertar(Alquiler alquiler) throws OperationNotSupportedException;
+	public abstract void insertar(Vehiculo turismo) throws OperationNotSupportedException;
+	public abstract Cliente buscar(Cliente cliente);
+	public abstract Alquiler buscar(Alquiler alquiler);
+	public abstract Vehiculo buscar(Vehiculo turismo);
+	public abstract void modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException;
+	public abstract void devolver(Alquiler alquiler, LocalDate fechaDevolucion) throws OperationNotSupportedException;
+	public abstract void borrar(Cliente cliente) throws OperationNotSupportedException;
+	public abstract void borrar(Alquiler alquiler) throws OperationNotSupportedException;
+	public abstract void borrar(Vehiculo turismo) throws OperationNotSupportedException;
+	public abstract List<Cliente> getClientes();
+	public abstract List<Alquiler> getAlquileres();
+	public abstract List<Vehiculo> getTurismos();
+	public abstract List<Alquiler> getAlquileres(Cliente cliente);
+	public abstract List<Alquiler> getAlquileres(Vehiculo turismo);
 }
