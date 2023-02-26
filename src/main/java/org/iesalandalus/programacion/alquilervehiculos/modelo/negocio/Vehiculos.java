@@ -7,7 +7,7 @@ import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Vehiculo;
 
-public class Vehiculos {
+public class Vehiculos implements IVehiculos {
 
 
 	private List<Vehiculo> coleccionVehiculos;
@@ -17,17 +17,32 @@ public class Vehiculos {
 		coleccionVehiculos = new ArrayList<>();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IVehiculos#get()
+	 */
+	
+	@Override
 	public List<Vehiculo> get() {
 
 		List<Vehiculo> turismosCopia = new ArrayList<>(coleccionVehiculos);
 		return turismosCopia;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IVehiculos#getCantidad()
+	 */
+	
+	@Override
 	public int getCantidad() {
 
 		return coleccionVehiculos.size();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IVehiculos#insertar(org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Vehiculo)
+	 */
+	
+	@Override
 	public void insertar(Vehiculo vehiculo) throws OperationNotSupportedException {
 
 		if (vehiculo == null) {
@@ -44,6 +59,11 @@ public class Vehiculos {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IVehiculos#buscar(org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Vehiculo)
+	 */
+	
+	@Override
 	public Vehiculo buscar(Vehiculo vehiculo) {
 
 		if (vehiculo == null) {
@@ -59,6 +79,11 @@ public class Vehiculos {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IVehiculos#borrar(org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Vehiculo)
+	 */
+	
+	@Override
 	public void borrar(Vehiculo vehiculo) throws OperationNotSupportedException {
 
 		if (vehiculo == null) {

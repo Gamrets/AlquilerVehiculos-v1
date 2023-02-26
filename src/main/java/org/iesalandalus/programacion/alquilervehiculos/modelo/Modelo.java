@@ -12,13 +12,16 @@ import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Vehiculo;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.Alquileres;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.Clientes;
+import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IAlquileres;
+import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IClientes;
+import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IVehiculos;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.Vehiculos;
 
 public class Modelo {
 
-	private Alquileres alquileres;
-	private Clientes clientes;
-	private Vehiculos turismos;
+	private IAlquileres alquileres;
+	private IClientes clientes;
+	private IVehiculos vehiculo;
 
 	public Modelo() {
 	}
@@ -26,7 +29,7 @@ public class Modelo {
 	public void comenzar() {
 		alquileres = new Alquileres();
 		clientes = new Clientes();
-		turismos = new Vehiculos();
+		vehiculo = new Vehiculos();
 	}
 
 	public void terminar() {
@@ -49,7 +52,7 @@ public class Modelo {
 			throw new OperationNotSupportedException("ERROR: No existe el cliente del alquiler.");
 		}
 
-		if (turismos.buscar(alquiler.getVehiculo()) == null) {
+		if (vehiculo.buscar(alquiler.getVehiculo()) == null) {
 			throw new OperationNotSupportedException("ERROR: No existe el turismo del alquiler.");
 		}
 
@@ -59,7 +62,7 @@ public class Modelo {
 	public void insertar(Vehiculo turismo) throws OperationNotSupportedException {
 
 		// Insertamos en turismos copia turismo recibido
-		turismos.insertar(new Vehiculo(turismo));
+		vehiculo.insertar(turismo.copiar(turismo));
 	}
 
 	public Cliente buscar(Cliente cliente) {
@@ -72,7 +75,7 @@ public class Modelo {
 	}
 
 	public Vehiculo buscar(Vehiculo turismo) {
-		return turismos.buscar(turismo);
+		return vehiculo.buscar(turismo);
 
 	}
 
@@ -110,7 +113,7 @@ public class Modelo {
 			alquileres.borrar(alquilerTurismo);
 		}
 
-		turismos.borrar(turismo);
+		vehiculo.borrar(turismo);
 	}
 
 	public List<Cliente> getClientes() {
@@ -143,11 +146,11 @@ public class Modelo {
 	public List<Vehiculo> getTurismos() {
 
 		List<Vehiculo> listaTurismos = new ArrayList<>();
-		Iterator<Vehiculo> iterador = turismos.get().iterator();
+		Iterator<Vehiculo> iterador = vehiculo.get().iterator();
 		while (iterador.hasNext()) {
 		    Vehiculo turismo = iterador.next();
 		    if (turismo != null) {
-		        listaTurismos.add(new Vehiculo(turismo));
+		        listaTurismos.add(turismo.copiar(turismo));
 		    }
 		}
 		return listaTurismos;

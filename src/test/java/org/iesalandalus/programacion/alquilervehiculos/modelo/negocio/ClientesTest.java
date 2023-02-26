@@ -32,7 +32,7 @@ public class ClientesTest {
 
 	private static Cliente cliente1;
 	private static Cliente cliente2;
-	private Clientes clientes;
+	private IClientes clientes;
 	
 	@BeforeEach
 	void init() {

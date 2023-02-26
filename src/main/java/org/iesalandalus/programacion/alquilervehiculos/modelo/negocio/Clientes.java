@@ -7,7 +7,7 @@ import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente;
 
-public class Clientes {
+public class Clientes implements IClientes {
 
 	private List<Cliente> coleccionClientes;
 
@@ -16,17 +16,32 @@ public class Clientes {
 		coleccionClientes = new ArrayList<>();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IClientes#get()
+	 */
+	
+	@Override
 	public List<Cliente> get() {
 
 		List<Cliente> clientesCopia = new ArrayList<>(coleccionClientes);
 		return clientesCopia;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IClientes#getCantidad()
+	 */
+	
+	@Override
 	public int getCantidad() {
 
 		return coleccionClientes.size();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IClientes#insertar(org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente)
+	 */
+	
+	@Override
 	public void insertar(Cliente cliente) throws OperationNotSupportedException {
 
 		if (cliente == null) {
@@ -43,6 +58,11 @@ public class Clientes {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IClientes#buscar(org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente)
+	 */
+	
+	@Override
 	public Cliente buscar(Cliente cliente) {
 
 		if (cliente == null) {
@@ -58,6 +78,11 @@ public class Clientes {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IClientes#borrar(org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente)
+	 */
+	
+	@Override
 	public void borrar(Cliente cliente) throws OperationNotSupportedException {
 
 		if (cliente == null) {
@@ -74,6 +99,11 @@ public class Clientes {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IClientes#modificar(org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente, java.lang.String, java.lang.String)
+	 */
+	
+	@Override
 	public void modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException {
 
 		if (cliente == null) {

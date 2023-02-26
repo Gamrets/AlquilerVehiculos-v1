@@ -11,7 +11,7 @@ import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Alquiler;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Vehiculo;
 
-public class Alquileres {
+public class Alquileres implements IAlquileres {
 
 	private List<Alquiler> coleccionAlquileres;
 
@@ -19,12 +19,22 @@ public class Alquileres {
 		coleccionAlquileres = new ArrayList<>();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IAlquileres#get()
+	 */
+	
+	@Override
 	public List<Alquiler> get() {
 
 		List<Alquiler> alquileresCopia = new ArrayList<>(coleccionAlquileres);
 		return alquileresCopia;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IAlquileres#get(org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente)
+	 */
+	
+	@Override
 	public List<Alquiler> get(Cliente cliente) {
 
 		//almaceno los alquileres asociados con cliente recibido
@@ -48,6 +58,11 @@ public class Alquileres {
 		return listaAlquileres;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IAlquileres#get(org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Vehiculo)
+	 */
+	
+	@Override
 	public List<Alquiler> get(Vehiculo turismo) {
 
 		//almaceno los alquileres asociados con turismo recibido
@@ -71,11 +86,21 @@ public class Alquileres {
 		return listaAlquileres;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IAlquileres#getCantidad()
+	 */
+	
+	@Override
 	public int getCantidad() {
 
 		return coleccionAlquileres.size();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IAlquileres#insertar(org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Alquiler)
+	 */
+	
+	@Override
 	public void insertar(Alquiler alquiler) throws OperationNotSupportedException {
 
 		if (alquiler == null) {
@@ -114,6 +139,11 @@ public class Alquileres {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IAlquileres#devolver(org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Alquiler, java.time.LocalDate)
+	 */
+	
+	@Override
 	public void devolver(Alquiler alquiler, LocalDate fechaDevolucion) throws OperationNotSupportedException {
 
 		if (alquiler == null || fechaDevolucion == null) {
@@ -138,6 +168,11 @@ public class Alquileres {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IAlquileres#borrar(org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Alquiler)
+	 */
+	
+	@Override
 	public void borrar(Alquiler alquiler) throws OperationNotSupportedException {
 
 		if (alquiler == null) {
@@ -154,6 +189,11 @@ public class Alquileres {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IAlquileres#buscar(org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Alquiler)
+	 */
+	
+	@Override
 	public Alquiler buscar(Alquiler alquiler) {
 		if (alquiler == null) {
 			throw new NullPointerException("ERROR: No se puede buscar un alquiler nulo.");

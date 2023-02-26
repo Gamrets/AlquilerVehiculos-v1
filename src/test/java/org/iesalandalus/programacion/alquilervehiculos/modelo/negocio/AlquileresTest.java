@@ -45,7 +45,7 @@ public class AlquileresTest {
 	private static LocalDate ayer;
 	private static LocalDate anteayer;
 	private static LocalDate semanaPasada;
-	private Alquileres alquileres;
+	private IAlquileres alquileres;
 
 	@BeforeAll
 	static void setup() {
