@@ -13,7 +13,7 @@ import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
 
-import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Turismo;
+import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Vehiculo;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,8 +26,8 @@ public class TurismosTest {
 	private static final String MENSAJE_ERROR_CLIENTE_EXISTE = "ERROR: Ya existe un turismo con esa matrícula.";
 	private static final String MENSAJE_ERROR_CLIENTE_BORRAR_NO_EXISTE = "ERROR: No existe ningún turismo con esa matrícula.";
 
-	private static Turismo turismo1;
-	private static Turismo turismo2;
+	private static Vehiculo turismo1;
+	private static Vehiculo turismo2;
 	private Turismos turismos;
 
 	@BeforeAll
@@ -53,7 +53,7 @@ public class TurismosTest {
 	void getDevuelveTurismosCorrectamente() {
 		assertDoesNotThrow(() -> turismos.insertar(turismo1));
 		assertDoesNotThrow(() -> turismos.insertar(turismo2));
-		List<Turismo> copiaTurismos = turismos.get();
+		List<Vehiculo> copiaTurismos = turismos.get();
 		assertEquals(2, copiaTurismos.size());
 		assertEquals(turismo1, copiaTurismos.get(0));
 		assertSame(turismo1, copiaTurismos.get(0));

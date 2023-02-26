@@ -5,21 +5,21 @@ import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
 
-import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Turismo;
+import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Vehiculo;
 
 public class Turismos {
 
 
-	private List<Turismo> coleccionTurismos;
+	private List<Vehiculo> coleccionTurismos;
 
 	public Turismos() {
 
 		coleccionTurismos = new ArrayList<>();
 	}
 
-	public List<Turismo> get() {
+	public List<Vehiculo> get() {
 
-		List<Turismo> turismosCopia = new ArrayList<>(coleccionTurismos);
+		List<Vehiculo> turismosCopia = new ArrayList<>(coleccionTurismos);
 		return turismosCopia;
 	}
 
@@ -28,7 +28,7 @@ public class Turismos {
 		return coleccionTurismos.size();
 	}
 
-	public void insertar(Turismo turismo) throws OperationNotSupportedException {
+	public void insertar(Vehiculo turismo) throws OperationNotSupportedException {
 
 		if (turismo == null) {
 
@@ -44,7 +44,7 @@ public class Turismos {
 		}
 	}
 
-	public Turismo buscar(Turismo turismo) {
+	public Vehiculo buscar(Vehiculo turismo) {
 
 		if (turismo == null) {
 			throw new NullPointerException("ERROR: No se puede buscar un turismo nulo.");
@@ -59,7 +59,7 @@ public class Turismos {
 		}
 	}
 
-	public void borrar(Turismo turismo) throws OperationNotSupportedException {
+	public void borrar(Vehiculo turismo) throws OperationNotSupportedException {
 
 		if (turismo == null) {
 

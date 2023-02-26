@@ -9,7 +9,7 @@ import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Alquiler;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente;
-import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Turismo;
+import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Vehiculo;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.Alquileres;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.Clientes;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.Turismos;
@@ -56,10 +56,10 @@ public class Modelo {
 		alquileres.insertar(new Alquiler(alquiler));
 	}
 
-	public void insertar(Turismo turismo) throws OperationNotSupportedException {
+	public void insertar(Vehiculo turismo) throws OperationNotSupportedException {
 
 		// Insertamos en turismos copia turismo recibido
-		turismos.insertar(new Turismo(turismo));
+		turismos.insertar(new Vehiculo(turismo));
 	}
 
 	public Cliente buscar(Cliente cliente) {
@@ -71,7 +71,7 @@ public class Modelo {
 
 	}
 
-	public Turismo buscar(Turismo turismo) {
+	public Vehiculo buscar(Vehiculo turismo) {
 		return turismos.buscar(turismo);
 
 	}
@@ -104,7 +104,7 @@ public class Modelo {
 
 	}
 
-	public void borrar(Turismo turismo) throws OperationNotSupportedException {
+	public void borrar(Vehiculo turismo) throws OperationNotSupportedException {
 
 		for (Alquiler alquilerTurismo : alquileres.get(turismo)) {
 			alquileres.borrar(alquilerTurismo);
@@ -140,14 +140,14 @@ public class Modelo {
 		return listaAlquileres;
 	}
 
-	public List<Turismo> getTurismos() {
+	public List<Vehiculo> getTurismos() {
 
-		List<Turismo> listaTurismos = new ArrayList<>();
-		Iterator<Turismo> iterador = turismos.get().iterator();
+		List<Vehiculo> listaTurismos = new ArrayList<>();
+		Iterator<Vehiculo> iterador = turismos.get().iterator();
 		while (iterador.hasNext()) {
-		    Turismo turismo = iterador.next();
+		    Vehiculo turismo = iterador.next();
 		    if (turismo != null) {
-		        listaTurismos.add(new Turismo(turismo));
+		        listaTurismos.add(new Vehiculo(turismo));
 		    }
 		}
 		return listaTurismos;
@@ -168,7 +168,7 @@ public class Modelo {
 
 	}
 
-	public List<Alquiler> getAlquileres(Turismo turismo) {
+	public List<Alquiler> getAlquileres(Vehiculo turismo) {
 
 		List<Alquiler> listaAlquileres = new ArrayList<>();
 		Iterator<Alquiler> iterador = alquileres.get(turismo).iterator();

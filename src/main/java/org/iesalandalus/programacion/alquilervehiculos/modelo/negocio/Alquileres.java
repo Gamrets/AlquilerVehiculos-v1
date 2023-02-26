@@ -9,7 +9,7 @@ import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Alquiler;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente;
-import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Turismo;
+import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Vehiculo;
 
 public class Alquileres {
 
@@ -48,7 +48,7 @@ public class Alquileres {
 		return listaAlquileres;
 	}
 
-	public List<Alquiler> get(Turismo turismo) {
+	public List<Alquiler> get(Vehiculo turismo) {
 
 		//almaceno los alquileres asociados con turismo recibido
 		List<Alquiler> listaAlquileres = new ArrayList<>();
@@ -87,7 +87,7 @@ public class Alquileres {
 
 	}
 
-	private void comprobarAlquiler(Cliente cliente, Turismo turismo, LocalDate fechaAlquiler)
+	private void comprobarAlquiler(Cliente cliente, Vehiculo turismo, LocalDate fechaAlquiler)
 			throws OperationNotSupportedException {
 
 		for (Iterator<Alquiler> iterator = coleccionAlquileres.iterator(); iterator.hasNext();) {
