@@ -30,7 +30,10 @@ public class Autobus extends Vehiculo {
 
 	@Override
 	public int getFactorPrecio() {
-		return FACTOR_PLAZAS;
+		
+		int factorPrecio = plazas * FACTOR_PLAZAS;
+		
+		return  factorPrecio;
 	}
 
 	@Override

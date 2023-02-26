@@ -33,8 +33,10 @@ public class Turismo extends Vehiculo {
 
 	@Override
 	public int getFactorPrecio() {
+		
+	    float factorPrecio = ((float)getCilindrada() / FACTOR_CILINDRADA); 
 
-		return FACTOR_CILINDRADA;
+		return (int) factorPrecio;
 	}
 
 	@Override
