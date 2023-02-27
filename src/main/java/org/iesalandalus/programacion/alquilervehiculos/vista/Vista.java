@@ -25,96 +25,31 @@ public class Vista {
 
 	public void comenzar() {
 
-		Opcion opcion = null;
+		Accion accion = null;
 
 		do {
 
 			Consola.mostrarMenu();
 			
 			try {
-				opcion = Consola.elegirOpcion();
-				ejecutar(opcion);
+				accion = Consola.elegirOpcion();
+				accion.ejecutar();
+				
 			} catch (OperationNotSupportedException e) {
 				System.out.println(e.getMessage());
 			}
 
-		} while (opcion != Opcion.SALIR);
+		} while (accion != Accion.SALIR);
 
 	}
 
-	private void ejecutar(Opcion opcion) {
-
-			switch (opcion) {
-				case INSERTAR_CLIENTE:
-					insertarCliente();
-					break;
-				case INSERTAR_TURISMO:
-					insertarTurismo();
-					break;
-
-				case INSERTAR_ALQUILER:
-					insertarAlquiler();
-					break;
-
-				case BUSCAR_CLIENTE:
-					buscarCliente();
-					break;
-
-				case BUSCAR_TURISMO:
-					buscarTurismo();
-					break;
-
-				case BUSCAR_ALQUILER:
-					buscarAlquiler();
-					break;
-
-				case MODIFICAR_CLIENTE:
-					modificarCliente();
-					break;
-
-				case DEVOLVER_ALQUILER:
-					devolverAlquiler();
-					break;
-
-				case BORRAR_CLIENTE:
-					borrarCliente();
-					break;
-
-				case BORRAR_TURISMO:
-					borrarTurismo();
-					break;
-
-				case BORRAR_ALQUILER:
-					borrarAlquiler();
-					break;
-				case LISTAR_CLIENTES:
-					listarClientes();
-					break;
-				case LISTAR_TURISMOS:
-					listarVehiculos();
-					break;
-				case LISTAR_ALQUILERES:
-					listarAlquileres();
-					break;
-				case LISTAR_ALQUILERES_CLIENTES:
-					listarAlquileresCliente();
-					break;
-				case LISTAR_ALQUILERES_TURISMO:
-					listarAlquileresTurismo();
-					break;
-
-				default:
-					opcion = Opcion.SALIR;
-					terminar();
-			}	
-
-	}
+	
 
 	public void terminar() {
 		System.out.println("Hasta luego,nos vemos pronto.");
 	}
 
-	private void insertarCliente() {
+	protected void insertarCliente() {
 
 		Consola.mostrarCabecera("Insertar cliente");
 		Cliente cliente = Consola.leerCliente();
@@ -126,7 +61,7 @@ public class Vista {
 		}
 	}
 
-	private void insertarTurismo() {
+	protected void insertarTurismo() {
 		Consola.mostrarCabecera("Insertar turismo");
 		Vehiculo turismo = Consola.leerTurismo();
 
@@ -137,7 +72,7 @@ public class Vista {
 		}
 	}
 
-	private void insertarAlquiler() {
+	protected void insertarAlquiler() {
 		Consola.mostrarCabecera("Insertar alquiler");
 		Alquiler alquiler = Consola.leerAlquiler();
 
@@ -148,7 +83,7 @@ public class Vista {
 		}
 	}
 
-	private void buscarCliente() {
+	protected void buscarCliente() {
 		Consola.mostrarCabecera("Buscar cliente");
 		Cliente cliente = Consola.leerClienteDni();
 		try {
@@ -160,7 +95,7 @@ public class Vista {
 
 	}
 
-	private void buscarTurismo() {
+	protected void buscarTurismo() {
 		Consola.mostrarCabecera("Buscar turismo");
 		Vehiculo turismo = Consola.leerTurismoMatricula();
 		try {
@@ -171,7 +106,7 @@ public class Vista {
 		}
 	}
 
-	private void buscarAlquiler() {
+	protected void buscarAlquiler() {
 		Consola.mostrarCabecera("Buscar alquiler");
 		Alquiler alquiler = Consola.leerAlquiler();
 		try {
@@ -183,7 +118,7 @@ public class Vista {
 
 	}
 
-	private void modificarCliente() {
+	protected void modificarCliente() {
 		Consola.mostrarCabecera("Modificar cliente");
 		Cliente cliente = Consola.leerClienteDni();
 		String nombre = Consola.leerNombre();
@@ -195,7 +130,7 @@ public class Vista {
 		}
 	}
 
-	private void devolverAlquiler() {
+	protected void devolverAlquiler() {
 		Consola.mostrarCabecera("Devolver alquiler");
 		Alquiler alquiler = Consola.leerAlquiler();
 		LocalDate fechaDevolucion = Consola.leerFechaDevolucion();
@@ -207,7 +142,7 @@ public class Vista {
 
 	}
 
-	private void borrarCliente() {
+	protected void borrarCliente() {
 		Consola.mostrarCabecera("Borrar cliente");
 		Cliente cliente = Consola.leerClienteDni();
 		try {
@@ -217,7 +152,7 @@ public class Vista {
 		}
 	}
 
-	private void borrarTurismo() {
+	protected void borrarTurismo() {
 		Consola.mostrarCabecera("Borrar turismo");
 		Vehiculo turismo = Consola.leerTurismoMatricula();
 		try {
@@ -227,7 +162,7 @@ public class Vista {
 		}
 	}
 
-	private void borrarAlquiler() {
+	protected void borrarAlquiler() {
 		Consola.mostrarCabecera("Borrar alquiler");
 		Alquiler alquiler = Consola.leerAlquiler();
 		try {
@@ -238,7 +173,7 @@ public class Vista {
 
 	}
 
-	private void listarClientes() {
+	protected void listarClientes() {
 		Consola.mostrarCabecera("Listar clientes");
 		try {
 			// Obrengo lista de clientes del controlador
@@ -266,7 +201,7 @@ public class Vista {
 		}
 	}
 
-	private void listarVehiculos() {
+	protected void listarVehiculos() {
 		Consola.mostrarCabecera("Listar todos los vehiculos");
 		try {
 	        List<Vehiculo> vehiculos = controlador.getTurismos();
@@ -292,7 +227,7 @@ public class Vista {
 	}
 	
 
-	private void listarAlquileres() {
+	protected void listarAlquileres() {
 		Consola.mostrarCabecera("Listar alquileres");
 		try {
 			List<Alquiler> alquileres = controlador.getAlquileres();
@@ -317,7 +252,7 @@ public class Vista {
 
 	}
 
-	private void listarAlquileresCliente() {
+	protected void listarAlquileresCliente() {
 		Consola.mostrarCabecera("Listar alquileres de un cliente");
 		Cliente cliente = Consola.leerClienteDni();
 		try {
@@ -343,7 +278,7 @@ public class Vista {
 		}
 	}
 
-	private void listarAlquileresTurismo() {
+	protected void listarAlquileresTurismo() {
 		Consola.mostrarCabecera("Listar alquileres de un turismo");
 		Vehiculo turismo = Consola.leerTurismoMatricula();
 		try {

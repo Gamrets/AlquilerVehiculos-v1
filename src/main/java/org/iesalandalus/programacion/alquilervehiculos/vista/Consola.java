@@ -28,7 +28,7 @@ public class Consola {
 	public static void mostrarMenu() {
 		mostrarCabecera("Gestión de reservas de vehiculos");
 		System.out.println("");
-		for (Opcion opcion : Opcion.values()) {
+		for (Accion opcion : Accion.values()) {
 			System.out.println(opcion);
 		}
 	}
@@ -51,14 +51,14 @@ public class Consola {
 		return fecha;
 	}
 
-	public static Opcion elegirOpcion() throws OperationNotSupportedException {
+	public static Accion elegirOpcion() throws OperationNotSupportedException {
 
 		try {
-			Opcion opcion = null;
+			Accion opcion = null;
 
 			while (opcion == null) {
 				int ordinal = leerEntero("Introduce numero de opcion que quieres ejecutar: ");
-				opcion = Opcion.getOpcionSegunOrdinal(ordinal);
+				opcion = Accion.getOpcionSegunOrdinal(ordinal);
 			}
 			return opcion;
 		} catch (Exception e) {
