@@ -33,7 +33,7 @@ public class Alquiler {
 		}
 		
 		cliente = new Cliente(alquiler.getCliente());
-		vehiculo.copiar(getVehiculo());
+		//vehiculo = vehiculo.copiar(alquiler.getVehiculo());
 		
 		setFechaAlquiler(alquiler.getFechaAlquiler());
 		
@@ -73,7 +73,7 @@ public class Alquiler {
 	private void setVehiculo(Vehiculo turismo) {
 
 		if (turismo == null) {
-			throw new NullPointerException("ERROR: El turismo no puede ser nulo.");
+			throw new NullPointerException("ERROR: El vehiculo no puede ser nulo.");
 		}
 		this.vehiculo = turismo;
 	}

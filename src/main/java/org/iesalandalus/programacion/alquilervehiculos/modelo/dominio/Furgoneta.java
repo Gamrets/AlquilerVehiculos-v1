@@ -42,9 +42,15 @@ public class Furgoneta extends Vehiculo {
 		}
 		this.plazas = plazas;
 	}
+	
+	@Override
+	public Vehiculo getVehiculoConMatricula(String matricula){
+		if (matricula==null) if (matricula == null) {throw new NullPointerException("ERROR: La matrícula no puede ser nula.");}
+		return new Furgoneta("Mercedes","Benz",2,25,matricula);
+		}
 
 	@Override
-	public int getFactorPrecio() {
+	protected int getFactorPrecio() {
 
 		float faclorPrecio =  ((float)getPma() / FACTOR_PMA + (float)getPlazas() * FACTOR_PLAZAS);
 
@@ -70,7 +76,7 @@ public class Furgoneta extends Vehiculo {
 
 	@Override
 	public String toString() {
-		return (String.format("%s %s (%sCV) - %s", super.getMarca(), getPma(),getPlazas(), super.getModelo(),
+		return (String.format("%s (%s Pma) (%s plazas) (%sCV) - %s", super.getMarca(), getPma(),getPlazas(), super.getModelo(),
 				super.getMatricula(), "disponible"));
 	}
 

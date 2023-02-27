@@ -14,16 +14,16 @@ public abstract class Vehiculo {
 	private String modelo;
 	private String matricula;
 
-	public Vehiculo(String marca, String modelo, String matricula) {
+	protected Vehiculo(String marca, String modelo, String matricula) {
 
 		setMarca(marca);
 		setModelo(modelo);
 		setMatricula(matricula);
 	}
 
-	public Vehiculo(Vehiculo vehiculo) {
+	protected Vehiculo(Vehiculo vehiculo) {
 		if (vehiculo == null) {
-			throw new NullPointerException("ERROR: No es posible copiar un turismo nulo.");
+			throw new NullPointerException("ERROR: No es posible copiar un vehiculo nulo.");
 		}
 		setMarca(vehiculo.getMarca());
 		setModelo(vehiculo.getModelo());
@@ -31,7 +31,7 @@ public abstract class Vehiculo {
 
 	}
 
-	public abstract int getFactorPrecio();
+	protected abstract int getFactorPrecio();
 	
     
 	public Vehiculo copiar(Vehiculo vehiculo) {
@@ -55,16 +55,8 @@ public abstract class Vehiculo {
 	}
 	
 
-	public static Vehiculo getVehiculoConMatricula(String matriculaValida) {
+	public abstract Vehiculo getVehiculoConMatricula(String matriculaValida);
 
-		if (matriculaValida == null) {
-			throw new NullPointerException("ERROR: La matrícula no puede ser nula.");
-		}
-
-		 Autobus autobus = new Autobus("Mercedes","Cian",32,matriculaValida);
-
-		return autobus;
-	}
 
 	public String getMarca() {
 		return marca;
@@ -78,7 +70,7 @@ public abstract class Vehiculo {
 		return matricula;
 	}
 
-	private void setMarca(String marca) {
+	protected void setMarca(String marca) {
 
 		if (marca == null) {
 			throw new NullPointerException("ERROR: La marca no puede ser nula.");
@@ -91,7 +83,7 @@ public abstract class Vehiculo {
 		this.marca = marca;
 	}
 
-	private void setModelo(String modelo) {
+	protected void setModelo(String modelo) {
 
 		if (modelo == null) {
 			throw new NullPointerException("ERROR: El modelo no puede ser nulo.");
@@ -105,7 +97,7 @@ public abstract class Vehiculo {
 		this.modelo = modelo;
 	}
 
-	private void setMatricula(String matricula) {
+	protected void setMatricula(String matricula) {
 
 		if (matricula == null) {
 			throw new NullPointerException("ERROR: La matrícula no puede ser nula.");

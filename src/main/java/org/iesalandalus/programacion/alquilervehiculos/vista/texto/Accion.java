@@ -1,4 +1,4 @@
-package org.iesalandalus.programacion.alquilervehiculos.vista;
+package org.iesalandalus.programacion.alquilervehiculos.vista.texto;
 
 public enum Accion {
 
@@ -12,9 +12,9 @@ public enum Accion {
 			vista.insertarCliente();
 		}
 	},
-	INSERTAR_TURISMO("Insertar turismo") {
+	INSERTAR_VEHICULO("Insertar vehiculo") {
 		public void ejecutar() {
-			vista.insertarTurismo();
+			vista.insertarVehiculo();
 		}
 	},
 	INSERTAR_ALQUILER("Insertar alquiler") {
@@ -28,9 +28,9 @@ public enum Accion {
 			vista.buscarCliente();
 		}
 	},
-	BUSCAR_TURISMO("Buscar turismo") {
+	BUSCAR_VEHICULO("Buscar vehiculo") {
 		public void ejecutar() {
-			vista.buscarTurismo();
+			vista.buscarVehiculo();
 		}
 	},
 	BUSCAR_ALQUILER("Buscar alquiler") {
@@ -53,7 +53,7 @@ public enum Accion {
 			vista.borrarCliente();
 		}
 	},
-	BORRAR_TURISMO("Borrar turismo") {
+	BORRAR_VEHICULO("Borrar vehiculo") {
 		public void ejecutar() {
 			vista.borrarTurismo();
 		}
@@ -90,7 +90,7 @@ public enum Accion {
 	};
 
 	private String cadenaAmostrar;
-	private static Vista vista;
+	private static VistaTexto vista;
 
 	Accion(String cadenaAmostrar) {
 		this.cadenaAmostrar = cadenaAmostrar;
@@ -104,14 +104,14 @@ public enum Accion {
 
 		} else {
 
-			throw new IllegalArgumentException("ERROR: Ordinal de la opcion no valido.");
+			throw new IllegalArgumentException("ERROR: Ordinal de la accion no valido.");
 		}
 
 	}
 
 	public abstract void ejecutar();
 
-	protected static void setVista(Vista vista) {
+	protected static void setVista(VistaTexto vista) {
 		Accion.vista = vista;
 	}
 

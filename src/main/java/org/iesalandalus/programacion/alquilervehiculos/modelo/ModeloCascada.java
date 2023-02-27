@@ -65,8 +65,8 @@ public class ModeloCascada extends Modelo{
 
 	}
 
-	public Vehiculo buscar(Vehiculo turismo) {
-		return vehiculos.buscar(turismo);
+	public Vehiculo buscar(Vehiculo vehiculo) {
+		return vehiculos.buscar(vehiculo);
 
 	}
 

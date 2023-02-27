@@ -10,6 +10,7 @@ import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Alquiler;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Vehiculo;
 import org.iesalandalus.programacion.alquilervehiculos.vista.Vista;
+import org.iesalandalus.programacion.alquilervehiculos.vista.texto.VistaTexto;
 
 public class Controlador {
 
@@ -20,6 +21,7 @@ public class Controlador {
 		if (modelo != null && vista != null) {
 			this.modelo = modelo;
 			this.vista = vista;
+			this.vista.setControlador(this);
 		}
 		vista.setControlador(this);
 	}
@@ -50,8 +52,8 @@ public class Controlador {
 		return modelo.buscar(cliente);
 	}
 
-	public Vehiculo buscar(Vehiculo turismo) throws OperationNotSupportedException {
-		return modelo.buscar(turismo);
+	public Vehiculo buscar(Vehiculo vehiculo) throws OperationNotSupportedException {
+		return modelo.buscar(vehiculo);
 	}
 
 	public Alquiler buscar(Alquiler alquiler) throws OperationNotSupportedException {

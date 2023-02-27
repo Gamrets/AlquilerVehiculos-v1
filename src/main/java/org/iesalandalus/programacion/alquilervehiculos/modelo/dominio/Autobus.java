@@ -27,14 +27,23 @@ public class Autobus extends Vehiculo {
 		}		
 		this.plazas = plazas;
 	}
+	
 
 	@Override
-	public int getFactorPrecio() {
+	protected int getFactorPrecio() {
 		
 		int factorPrecio = plazas * FACTOR_PLAZAS;
 		
 		return  factorPrecio;
 	}
+	
+	
+	@Override
+	public Vehiculo getVehiculoConMatricula(String matricula){
+		if (matricula==null) if (matricula == null) {throw new NullPointerException("ERROR: La matrícula no puede ser nula.");}
+		return new Autobus("Mercedes","Bens",6,matricula);
+	}
+	
 
 	@Override
 	public int hashCode() {
@@ -56,7 +65,7 @@ public class Autobus extends Vehiculo {
 	
 	@Override
 	public String toString() {
-		return (String.format("%s %s (%sCV) - %s", super.getMarca(), getPlazas(), super.getModelo(),
+		return (String.format("%s  (%s plazas) (%sCV) - %s", super.getMarca(), getPlazas(), super.getModelo(),
 				super.getMatricula(), "disponible"));
 	}
 		

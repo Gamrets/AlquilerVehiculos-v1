@@ -30,9 +30,16 @@ public class Turismo extends Vehiculo {
 
 		this.cilindrada = cilindrada;
 	}
+	
+	@Override
+	public Vehiculo getVehiculoConMatricula(String matricula){
+		if (matricula==null) if (matricula == null) {throw new NullPointerException("ERROR: La matrícula no puede ser nula.");}
+		return new Turismo("Mercedes","Bens",50,matricula);
+	}
+	
 
 	@Override
-	public int getFactorPrecio() {
+	protected int getFactorPrecio() {
 		
 	    float factorPrecio = ((float)getCilindrada() / FACTOR_CILINDRADA); 
 

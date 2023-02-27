@@ -47,14 +47,14 @@ public class Vehiculos implements IVehiculos {
 
 		if (vehiculo == null) {
 
-			throw new NullPointerException("ERROR: No se puede insertar un turismo nulo.");
+			throw new NullPointerException("ERROR: No se puede insertar un vehiculo nulo.");
 		}
 
 		if (!coleccionVehiculos.contains(vehiculo)) {
 			coleccionVehiculos.add(vehiculo);
 		} else {
 
-			throw new OperationNotSupportedException("ERROR: Ya existe un turismo con esa matrícula.");
+			throw new OperationNotSupportedException("ERROR: Ya existe un vehiculo con esa matrícula.");
 
 		}
 	}
@@ -67,16 +67,21 @@ public class Vehiculos implements IVehiculos {
 	public Vehiculo buscar(Vehiculo vehiculo) {
 
 		if (vehiculo == null) {
-			throw new NullPointerException("ERROR: No se puede buscar un turismo nulo.");
+			throw new NullPointerException("ERROR: No se puede buscar un vehiculo nulo.");
 		}
-
-		int indice = coleccionVehiculos.indexOf(vehiculo);
+		
+		/*int indice = coleccionVehiculos.indexOf(vehiculo);
 
 		if (indice == -1) {
 			return null;
 		} else {
 			return coleccionVehiculos.get(coleccionVehiculos.indexOf(vehiculo));
-		}
+		}*/
+
+		Vehiculo vehiculoB = null;
+		if(coleccionVehiculos.contains(vehiculo)) {
+			vehiculoB =(coleccionVehiculos.get(coleccionVehiculos.indexOf(vehiculo)));}
+		return vehiculoB;
 	}
 
 	/* (non-Javadoc)
@@ -88,12 +93,12 @@ public class Vehiculos implements IVehiculos {
 
 		if (vehiculo == null) {
 
-			throw new NullPointerException("ERROR: No se puede borrar un turismo nulo.");
+			throw new NullPointerException("ERROR: No se puede borrar un vehiculo nulo.");
 		}
 
 		if (!coleccionVehiculos.contains(vehiculo)) {
 
-			throw new OperationNotSupportedException("ERROR: No existe ningún turismo con esa matrícula.");
+			throw new OperationNotSupportedException("ERROR: No existe ningún vehiculo con esa matrícula.");
 		} else {
 			coleccionVehiculos.remove(vehiculo);
 		}
