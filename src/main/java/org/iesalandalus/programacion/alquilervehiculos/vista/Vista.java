@@ -1,6 +1,9 @@
 package org.iesalandalus.programacion.alquilervehiculos.vista;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
 
@@ -88,7 +91,7 @@ public class Vista {
 					listarClientes();
 					break;
 				case LISTAR_TURISMOS:
-					listarTurismos();
+					listarVehiculos();
 					break;
 				case LISTAR_ALQUILERES:
 					listarAlquileres();
@@ -238,25 +241,76 @@ public class Vista {
 	private void listarClientes() {
 		Consola.mostrarCabecera("Listar clientes");
 		try {
-			System.out.println(controlador.getClientes());
+			// Obrengo lista de clientes del controlador
+			List<Cliente> clientes = controlador.getClientes();
+
+			// Utilisando colection sort ordeno la lista / con comparator defino criterio de
+			// comparacion
+			Collections.sort(clientes, new Comparator<Cliente>() {
+
+				public int compare(Cliente c1, Cliente c2) {
+					// Primero se compara por el nobre
+					int resultado = c1.getNombre().compareTo(c2.getNombre());
+					// Despues por dni
+					if (resultado == 0) {
+						resultado = c1.getDni().compareTo(c2.getDni());
+					}
+					return resultado;
+				}
+			});
+			for (Cliente cliente : clientes) {
+				System.out.println(cliente);
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	private void listarTurismos() {
-		Consola.mostrarCabecera("Listar todos los turismos");
+	private void listarVehiculos() {
+		Consola.mostrarCabecera("Listar todos los vehiculos");
 		try {
-			System.out.println(controlador.getTurismos());
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+	        List<Vehiculo> vehiculos = controlador.getTurismos();
+	        Collections.sort(vehiculos, new Comparator<Vehiculo>() {
+	        
+	            public int compare(Vehiculo t1, Vehiculo t2) {
+	                int resultado = t1.getMarca().compareTo(t2.getMarca());
+	                if (resultado == 0) {
+	                    resultado = t1.getModelo().compareTo(t2.getModelo());
+	                    if (resultado == 0) {
+	                        resultado = t1.getMatricula().compareTo(t2.getMatricula());
+	                    }
+	                }
+	                return resultado;
+	            }
+	        });
+	        for (Vehiculo vehiculo : vehiculos) {
+	            System.out.println(vehiculo);
+	        }
+	    } catch (Exception e) {
+	        System.out.println(e.getMessage());
+	    }
 	}
+	
 
 	private void listarAlquileres() {
 		Consola.mostrarCabecera("Listar alquileres");
 		try {
-			System.out.println(controlador.getAlquileres());
+			List<Alquiler> alquileres = controlador.getAlquileres();
+			Collections.sort(alquileres, new Comparator<Alquiler>() {
+				public int compare(Alquiler a1, Alquiler a2) {
+					int resultado = a1.getFechaAlquiler().compareTo(a2.getFechaAlquiler());
+					if (resultado == 0) {
+						resultado = a1.getCliente().getNombre().compareTo(a2.getCliente().getNombre());
+						if (resultado == 0) {
+							resultado = a1.getCliente().getDni().compareTo(a2.getCliente().getDni());
+						}
+					}
+					return resultado;
+				}
+			});
+			for (Alquiler alquiler : alquileres) {
+				System.out.println(alquiler);
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -267,7 +321,23 @@ public class Vista {
 		Consola.mostrarCabecera("Listar alquileres de un cliente");
 		Cliente cliente = Consola.leerClienteDni();
 		try {
-			System.out.println(controlador.getAlquileres(cliente));
+			List<Alquiler> alquileres = controlador.getAlquileres(cliente);
+			Collections.sort(alquileres, new Comparator<Alquiler>() {
+				public int compare(Alquiler a1, Alquiler a2) {
+					int resultado = a1.getFechaAlquiler().compareTo(a2.getFechaAlquiler());
+					if (resultado == 0) {
+						resultado = a1.getCliente().getNombre().compareTo(a2.getCliente().getNombre());
+						if (resultado == 0) {
+							resultado = a1.getCliente().getDni().compareTo(a2.getCliente().getDni());
+						}
+					}
+					return resultado;
+				}
+			});
+			
+			for (Alquiler alquiler : alquileres) {
+				System.out.println(alquiler);
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -277,7 +347,23 @@ public class Vista {
 		Consola.mostrarCabecera("Listar alquileres de un turismo");
 		Vehiculo turismo = Consola.leerTurismoMatricula();
 		try {
-			System.out.println(controlador.getAlquileres(turismo));
+			List<Alquiler> alquileres = controlador.getAlquileres(turismo);
+			Collections.sort(alquileres, new Comparator<Alquiler>() {
+				public int compare(Alquiler a1, Alquiler a2) {
+					int resultado = a1.getFechaAlquiler().compareTo(a2.getFechaAlquiler());
+					if (resultado == 0) {
+						resultado = a1.getCliente().getNombre().compareTo(a2.getCliente().getNombre());
+						if (resultado == 0) {
+							resultado = a1.getCliente().getDni().compareTo(a2.getCliente().getDni());
+						}
+					}
+					return resultado;
+				}
+			});
+
+			for (Alquiler alquiler : alquileres) {
+				System.out.println(alquiler);
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

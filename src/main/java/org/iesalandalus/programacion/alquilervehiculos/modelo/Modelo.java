@@ -25,7 +25,7 @@ public abstract class Modelo {
 
 	 IAlquileres alquileres;
 	 IClientes clientes;
-	 IVehiculos vehiculo;
+	 IVehiculos vehiculos;
 	 IFuenteDatos fuenteDatos;
 
 	 public void setFuenteDatos(IFuenteDatos fuenteDatos) {
@@ -36,7 +36,7 @@ public abstract class Modelo {
 	public void comenzar() {
 		alquileres = new Alquileres();
 		clientes = new Clientes();
-		vehiculo = new Vehiculos();
+		vehiculos = new Vehiculos();
 	}
 
 	public void terminar() {

@@ -12,6 +12,8 @@ import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Vehiculo;
 
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IFuenteDatos;
+import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IVehiculos;
+import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.Vehiculos;
 
 
 public class ModeloCascada extends Modelo{
@@ -19,7 +21,9 @@ public class ModeloCascada extends Modelo{
 	
 	public ModeloCascada(IFuenteDatos fuenteDatos) {
 		
-		
+		clientes = fuenteDatos.crearClientes();
+		vehiculos = fuenteDatos.crearVehiculos();
+		alquileres = fuenteDatos.crearAlquileres();
 	}
 	
 
@@ -39,7 +43,7 @@ public class ModeloCascada extends Modelo{
 			throw new OperationNotSupportedException("ERROR: No existe el cliente del alquiler.");
 		}
 
-		if (vehiculo.buscar(alquiler.getVehiculo()) == null) {
+		if (vehiculos.buscar(alquiler.getVehiculo()) == null) {
 			throw new OperationNotSupportedException("ERROR: No existe el turismo del alquiler.");
 		}
 
@@ -49,7 +53,7 @@ public class ModeloCascada extends Modelo{
 	public void insertar(Vehiculo turismo) throws OperationNotSupportedException {
 
 		// Insertamos en turismos copia turismo recibido
-		vehiculo.insertar(turismo.copiar(turismo));
+		vehiculos.insertar(turismo.copiar(turismo));
 	}
 
 	public Cliente buscar(Cliente cliente) {
@@ -62,7 +66,7 @@ public class ModeloCascada extends Modelo{
 	}
 
 	public Vehiculo buscar(Vehiculo turismo) {
-		return vehiculo.buscar(turismo);
+		return vehiculos.buscar(turismo);
 
 	}
 
@@ -100,7 +104,7 @@ public class ModeloCascada extends Modelo{
 			alquileres.borrar(alquilerTurismo);
 		}
 
-		vehiculo.borrar(turismo);
+		vehiculos.borrar(turismo);
 	}
 
 	public List<Cliente> getClientes() {
@@ -133,7 +137,7 @@ public class ModeloCascada extends Modelo{
 	public List<Vehiculo> getTurismos() {
 
 		List<Vehiculo> listaTurismos = new ArrayList<>();
-		Iterator<Vehiculo> iterador = vehiculo.get().iterator();
+		Iterator<Vehiculo> iterador = vehiculos.get().iterator();
 		while (iterador.hasNext()) {
 		    Vehiculo turismo = iterador.next();
 		    if (turismo != null) {
