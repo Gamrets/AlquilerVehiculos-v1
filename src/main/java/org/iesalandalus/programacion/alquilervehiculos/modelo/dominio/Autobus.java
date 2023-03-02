@@ -45,9 +45,9 @@ public class Autobus extends Vehiculo {
 	}
 	
 
-	@Override
+	/*@Override
 	public int hashCode() {
-	    return Objects.hash(getMatricula());
+	    return Objects.hash(super.getMatricula());
 	}
 
 	@Override
@@ -57,10 +57,10 @@ public class Autobus extends Vehiculo {
 	    }
 	    if (obj instanceof Autobus) {
 	        Autobus other = (Autobus) obj;
-	        return Objects.equals(getMatricula(), other.getMatricula());
+	        return Objects.equals(super.getMatricula(), other.getMatricula());
 	    }
 	    return false;
-	}
+	}*/
 	
 	
 	@Override

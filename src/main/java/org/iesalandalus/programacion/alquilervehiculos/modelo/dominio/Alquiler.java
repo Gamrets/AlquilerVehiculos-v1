@@ -33,7 +33,8 @@ public class Alquiler {
 		}
 		
 		cliente = new Cliente(alquiler.getCliente());
-		//vehiculo = vehiculo.copiar(alquiler.getVehiculo());
+		//Asignamos al vehiculo objeto de tipo que es , a traves de metodo copiar 
+		setVehiculo((alquiler.getVehiculo().copiar(alquiler.getVehiculo())) );
 		
 		setFechaAlquiler(alquiler.getFechaAlquiler());
 		

@@ -67,21 +67,15 @@ public class Vehiculos implements IVehiculos {
 	public Vehiculo buscar(Vehiculo vehiculo) {
 
 		if (vehiculo == null) {
-			throw new NullPointerException("ERROR: No se puede buscar un vehiculo nulo.");
-		}
-		
-		/*int indice = coleccionVehiculos.indexOf(vehiculo);
+	        throw new NullPointerException("ERROR: No se puede buscar un vehiculo nulo.");
+	    }
+	    if (coleccionVehiculos.contains(vehiculo)) {
+	        return coleccionVehiculos.get(coleccionVehiculos.indexOf(vehiculo));
+	    } else {
+	        return null;
+	    }
 
-		if (indice == -1) {
-			return null;
-		} else {
-			return coleccionVehiculos.get(coleccionVehiculos.indexOf(vehiculo));
-		}*/
-
-		Vehiculo vehiculoB = null;
-		if(coleccionVehiculos.contains(vehiculo)) {
-			vehiculoB =(coleccionVehiculos.get(coleccionVehiculos.indexOf(vehiculo)));}
-		return vehiculoB;
+	
 	}
 
 	/* (non-Javadoc)

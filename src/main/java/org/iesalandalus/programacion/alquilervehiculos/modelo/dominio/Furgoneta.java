@@ -57,9 +57,9 @@ public class Furgoneta extends Vehiculo {
 		return (int) faclorPrecio;
 	}
 	
-	@Override
+	/*@Override
 	public int hashCode() {
-		return Objects.hash(getMatricula());
+		return Objects.hash(super.getMatricula());
 	}
 
 	@Override
@@ -69,10 +69,10 @@ public class Furgoneta extends Vehiculo {
 		}
 		if (obj instanceof Turismo) {
 			Turismo other = (Turismo) obj;
-			return Objects.equals(getMatricula(), other.getMatricula());
+			return Objects.equals(super.getMatricula(), other.getMatricula());
 		}
 		return false;
-	}
+	}*/
 
 	@Override
 	public String toString() {

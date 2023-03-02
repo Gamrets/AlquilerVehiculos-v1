@@ -33,7 +33,7 @@ public class VistaTexto  extends Vista{
 				accion = Consola.elegirOpcion();
 				accion.ejecutar();
 				
-			} catch (OperationNotSupportedException e) {
+			} catch (OperationNotSupportedException | IllegalArgumentException | NullPointerException e) {
 				System.out.println(e.getMessage());
 			}
 

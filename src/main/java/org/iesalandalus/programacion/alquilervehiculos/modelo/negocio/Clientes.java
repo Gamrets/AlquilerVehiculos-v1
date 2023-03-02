@@ -110,10 +110,12 @@ public class Clientes implements IClientes {
 			throw new NullPointerException("ERROR: No se puede modificar un cliente nulo.");
 		}
 		if (nombre != null && !nombre.trim().isEmpty()) {
-			cliente.setNombre(nombre);
+			//cliente.setNombre(nombre);
+			coleccionClientes.get(coleccionClientes.indexOf(cliente)).setNombre(nombre);
 		}
 		if (telefono != null && !telefono.trim().isEmpty()) {
-			cliente.setTelefono(telefono);
+			//cliente.setTelefono(telefono);
+			coleccionClientes.get(coleccionClientes.indexOf(cliente)).setTelefono(telefono);
 		}
 
 		if (!coleccionClientes.contains(cliente)) {
